@@ -53,7 +53,8 @@
             <li class="comments_list">
               <%= p.text %>
               <%#= link_to @prototype.user.name, user_path(@prototype.user_id), class: :comment_user %>
-              <%= link_to p.user.name, user_path(@prototype.user_id), class: :comment_user %>
+              <%#= link_to p.user.name, user_path(@prototype.user_id), class: :comment_user %>
+              <%= link_to p.user.name, user_path(p.user_id), class: :comment_user %>
 
             </li>
           <% end %>
