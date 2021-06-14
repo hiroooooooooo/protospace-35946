@@ -5,9 +5,13 @@ class CommentsController < ApplicationController
     if comment.valid?
       comment.save
       redirect_to "/prototypes/#{comment.prototype.id}"
-    else
-      # render "#{comment.prototype.show}"
-      render "/prototypes/#{comment.prototype.id}"
+    else  
+
+      @prototype = Prototype.find(params[:prototype_id])
+      @comment = Comment.new
+      @comment_list = @prototype.comments
+
+      render "prototypes/show"
     end
   end
 

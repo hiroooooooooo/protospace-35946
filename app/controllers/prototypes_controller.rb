@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
   
-
   def new
     @prototype = Prototype.new
   end
@@ -20,6 +20,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    # binding.pry
     @prototype = Prototype.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all
@@ -29,13 +30,22 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+    
+    @prototype = Prototype.find(params[:id])
+
     unless user_signed_in?
       redirect_to action: :index
+    # else current_user.id == @prototype.user.id
+    # else current_user.id != @prototype.user_id
+      # binding.pry
+      # redirect_to action: :index
     end
 
+    # if current_user.id != @prototype.user.id
+    if current_user.id != @prototype.user_id
+      redirect_to action: :index
+    end
     # http://localhost:3000/prototypes/5/edit
-    # @prototype = Prototype.new
-    @prototype = Prototype.find(params[:id])
   end
 
   def update

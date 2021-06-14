@@ -52,7 +52,9 @@
           <% @comment_list.each do |p| %>
             <li class="comments_list">
               <%= p.text %>
-              <%= link_to @prototype.user.name, user_path(@prototype.user_id), class: :comment_user %>
+              <%#= link_to @prototype.user.name, user_path(@prototype.user_id), class: :comment_user %>
+              <%= link_to p.user.name, user_path(@prototype.user_id), class: :comment_user %>
+
             </li>
           <% end %>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
